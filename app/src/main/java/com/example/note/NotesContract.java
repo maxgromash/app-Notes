@@ -1,6 +1,6 @@
 package com.example.note;
 
-import android.provider.BaseColumns;
+        import android.provider.BaseColumns;
 
 public class NotesContract {
     public static final class NotesEntry implements BaseColumns{
