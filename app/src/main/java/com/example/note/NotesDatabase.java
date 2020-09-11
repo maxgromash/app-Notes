@@ -12,16 +12,18 @@ public abstract class  NotesDatabase extends RoomDatabase {
     private static final String DB_NAME = "notes2.db";
     private static final Object LOCK = new Object();
 
+    //Метод получения БД
     public static NotesDatabase getInstance(Context context){
         //Синхронизация для 2-х поток, чтобы сработал if дважды
-        //synchronized (LOCK) {
+        synchronized (LOCK) {
             if (database == null) {
                 //allowMainThreadQueries() - только для тестов, для истольховани БД из главного потока. На практике не используется
                 database = Room.databaseBuilder(context, NotesDatabase.class, DB_NAME).allowMainThreadQueries().build();
             }
-        //}
+        }
         return database;
     }
 
+    //Доступ к Dao
     public abstract NotesDao notesDao();
 }

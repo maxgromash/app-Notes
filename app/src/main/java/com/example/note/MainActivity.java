@@ -3,6 +3,8 @@ package com.example.note;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -70,10 +72,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void remove(int position) {
-        Note note =notes.get(position);
+        Note note = notes.get(position);
         database.notesDao().deleteNote(note);
-        getData();
-        adapter.notifyDataSetChanged();
     }
 
     public void onClickAddNote(View view) {
@@ -82,15 +82,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getData(){
-        try {
-            List<Note> notesFromDB = database.notesDao().getAllNotes();
-            notes.clear();
-            notes.addAll(notesFromDB);
-        } catch (Exception ex)
-        {
-            ex.printStackTrace();
-        }
-
+            LiveData<List<Note>> notesFromDB = database.notesDao().getAllNotes();
+            notesFromDB.observe(this, new Observer<List<Note>>() {
+                @Override
+                public void onChanged(List<Note> notesFromLiveData) {
+                    notes.clear();
+                    notes.addAll(notesFromLiveData);
+                    adapter.notifyDataSetChanged();
+                }
+            });
 
     }
 

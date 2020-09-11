@@ -13,6 +13,7 @@ public class Note {
     private  String dayOfWeek;
     private int priority;
 
+    //Основной констуктор
     public Note(String title, String description, String dayOfWeek, int priority, int id) {
         this.title = title;
         this.description = description;
@@ -21,6 +22,7 @@ public class Note {
         this.id = id;
     }
 
+    //Дополнительный конструктор
     @Ignore
     public Note(String title, String description, String dayOfWeek, int priority) {
         this.title = title;
