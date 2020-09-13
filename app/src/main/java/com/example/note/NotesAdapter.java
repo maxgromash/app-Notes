@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHolder> {
 
@@ -16,18 +17,31 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
     public NotesAdapter(ArrayList<Note> notes) {
         this.notes = notes;
     }
-    private ArrayList<Note> notes;
+
+    private List<Note> notes;
 
     //Создаём всё для обработки нажатий
     //Объект интервейся
     private OnNoteClickListener onNoteClickListener;
+
     //Сеттер
     public void setOnNoteClickListener(OnNoteClickListener onNoteClickListener) {
         this.onNoteClickListener = onNoteClickListener;
     }
+
+    public List<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(List<Note> notes) {
+        this.notes = notes;
+        notifyDataSetChanged();
+    }
+
     //Интерфейс
-    interface OnNoteClickListener{
+    interface OnNoteClickListener {
         void onNoteClick(int position);
+
         void onLongClick(int position);
     }
 
@@ -49,8 +63,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
         holder.textViewDayOfWeek.setText(note.getDayOfWeek());
         int colorId = 0;
         int priority = note.getPriority();
-        switch (priority)
-        {
+        switch (priority) {
             case 1:
                 colorId = holder.itemView.getResources().getColor(android.R.color.holo_red_light);
                 break;
@@ -71,7 +84,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
     }
 
     //Класс ViewHolder для представления элемента
-    class NotesViewHolder extends RecyclerView.ViewHolder{
+    class NotesViewHolder extends RecyclerView.ViewHolder {
         //Создаём все View
         private TextView textViewTitle;
         private TextView textViewDescription;

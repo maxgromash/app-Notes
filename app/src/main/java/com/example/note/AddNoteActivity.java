@@ -1,10 +1,10 @@
 package com.example.note;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -19,14 +19,18 @@ public class AddNoteActivity extends AppCompatActivity {
     private EditText editTextDescription;
     private Spinner spinner;
     private RadioGroup radioGroup;
+    private MainViewModel mainViewModel;
 
-    private NotesDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_note);
-        database = NotesDatabase.getInstance(this);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null )
+            actionBar.hide();
+
+        mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
         editTextTitle = findViewById(R.id.editTextTitle);
         editTextDescription = findViewById(R.id.editTextDescription);
@@ -44,16 +48,15 @@ public class AddNoteActivity extends AppCompatActivity {
 
         if (isFilled(title, description)) {
             Note note = new Note(title, description, day, priority);
-            database.notesDao().insertNote(note);
+            mainViewModel.insertNote(note);
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
-        }
-        else
+        } else
             Toast.makeText(this, R.string.warning_fill_fileds, Toast.LENGTH_SHORT).show();
     }
 
-    private boolean isFilled(String title, String descripition) {
-        return !title.isEmpty() && !descripition.isEmpty();
+    private boolean isFilled(String title, String description) {
+        return !title.isEmpty() && !description.isEmpty();
     }
 
 }

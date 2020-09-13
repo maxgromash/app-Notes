@@ -10,7 +10,7 @@ public class Note {
     private int id;
     private String title;
     private String description;
-    private  String dayOfWeek;
+    private String dayOfWeek;
     private int priority;
 
     //Основной констуктор

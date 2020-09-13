@@ -12,6 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/edit_text_ttitle"
         android:inputType="textPersonName"
@@ -30,7 +31,8 @@
         android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTitle"
+        android:autofillHints="" />
 
     <Spinner
         android:id="@+id/spinnerDaysOfWeek"
@@ -56,21 +58,21 @@
 
         <RadioButton
             android:id="@+id/radioButton1"
-            android:layout_width="wrap_content"
+            android:layout_width="134dp"
             android:layout_height="wrap_content"
             android:background="@android:color/holo_red_light"
             android:text="@string/priority_1" />
 
         <RadioButton
             android:id="@+id/radioButton2"
-            android:layout_width="wrap_content"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:background="@android:color/holo_orange_dark"
             android:text="@string/priority_2" />
 
         <RadioButton
             android:id="@+id/radioButton3"
-            android:layout_width="53dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/holo_green_light"
             android:checked="true"
