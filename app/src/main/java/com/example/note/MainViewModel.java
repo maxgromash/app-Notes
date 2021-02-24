@@ -6,6 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.example.note.data.Note;
+import com.example.note.data.NotesDatabase;
+
 import java.util.List;
 
 public class MainViewModel extends AndroidViewModel {
@@ -29,10 +32,6 @@ public class MainViewModel extends AndroidViewModel {
 
     public void deleteNote(Note note) {
         new DeleteTask().execute(note);
-    }
-
-    public void deleteAllNote(Note note) {
-        new DeleteAllTask().execute();
     }
 
     private static class InsertTask extends AsyncTask<Note, Void, Void> {

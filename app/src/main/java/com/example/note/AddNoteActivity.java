@@ -13,6 +13,8 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.note.data.Note;
+
 public class AddNoteActivity extends AppCompatActivity {
 
     private EditText editTextTitle = null;

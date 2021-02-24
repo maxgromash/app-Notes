@@ -1,4 +1,4 @@
-package com.example.note;
+package com.example.note.data;
 
 import androidx.room.Entity;
 import androidx.room.Ignore;

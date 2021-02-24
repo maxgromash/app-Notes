@@ -16,6 +16,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.note.adapters.NotesAdapter;
+import com.example.note.data.Note;
+
 import java.util.ArrayList;
 import java.util.List;
 
